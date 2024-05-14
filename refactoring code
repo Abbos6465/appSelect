@@ -1,8 +1,7 @@
 <script setup>
 import {computed, onMounted, onUnmounted, reactive, ref, useSlots, watch, watchEffect} from "vue";
 import {useI18n} from "vue-i18n";
-import {extractNumberFromString, generateRandomID} from "@/utils/helper.js";
-import PageHeader from "@/components/workplaces/PageHeader.vue";
+import {generateRandomID} from "@/utils/helper.js";
 
 const id = generateRandomID();
 const {t} = useI18n();
@@ -151,6 +150,12 @@ const clickOption = (option) => {
 
 const appSelectDropdownOptions = ref(null);
 const appSelectDropdownWrapper = ref(null);
+
+const extractNumberFromString = (str) => {
+  const regex = /\d+/;
+  const match = str.match(regex);
+  return match ? parseInt(match[0]) : null;
+}
 
 const scrollToActiveOption = (type) => {
   const firstItem = appSelectDropdownOptions.value[pointerIndex.value];
